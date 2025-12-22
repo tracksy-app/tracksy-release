@@ -24,3 +24,5 @@ tasks:
     command: "uv run ty check"
     inputs:
       - "**/*.py"
+  version:
+    command: "uv run version --bump minor"
