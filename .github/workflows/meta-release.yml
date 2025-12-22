@@ -45,12 +45,18 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Update CHANGELOG.md
+      - name: Generate release notes
         id: git-cliff
         uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
-          args: --tag ${{ steps.version.outputs.tag }} --github-repo ${{ github.repository }} --output CHANGELOG.md
+          args: --latest --strip header,footer
+
+      - name: Update CHANGELOG.md
+        run: |
+          git cliff --tag ${{ steps.version.outputs.tag }} \
+            --github-repo ${{ github.repository }} \
+            --output CHANGELOG.md
 
       - name: Update SECURITY.md
         run: |
