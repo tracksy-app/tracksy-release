@@ -1,6 +1,6 @@
 {
   "name": "blowfish_template",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "Blowfish Template",
   "main": "index.js",
   "scripts": {
