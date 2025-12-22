@@ -68,17 +68,6 @@ body = """
         {% endif -%}
     {% endfor -%}
 {% endfor -%}
-{%- if github -%}
-{% if github.contributors | filter(attribute="is_first_time", value=true) | length != 0 %}
-  ## New Contributors ❤️
-{% endif %}\
-{% for contributor in github.contributors | filter(attribute="is_first_time", value=true) %}
-  * @{{ contributor.username }} made their first contribution
-    {%- if contributor.pr_number %} in \
-      [#{{ contributor.pr_number }}]({{ self::remote_url() }}/pull/{{ contributor.pr_number }}) \
-    {%- endif %}
-{%- endfor -%}
-{%- endif %}
 
 ## Commit Statistics 📊\n
 - {{ statistics.commit_count }} commit(s) contributed to the release.
