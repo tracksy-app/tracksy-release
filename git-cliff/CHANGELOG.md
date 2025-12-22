@@ -1,63 +1,66 @@
-## [0.3.0] - 2025-12-05
+## [0.3.1] - 2025-12-22
 
 ### 🚀 Features
 
-- Generate more rows for the demo
-- Filter out non-music streams
-- *(ui)* Add light/dark mode toggle with system preference support (#141)
-- Inform the user that the database is being prepared
-- Put charts on card
-- Make the legend easier to read
-- Add the number of streams to the tooltip
-- Freeze the scale between years
-- Add chart title
-- *(StreamPerHour)* Add duration to the tooltip
-- *(Charts)* Add TopTracks chart
-- *(HowToButton)* Inform user how to download data
-- *(Charts)* Add TopArtists chart
-- Add streaks chart
-- Add top10 evolution
-- Separate charts under development from the rest
-- Add TopStreak
-- Add TotalStreams
-- Add TopArtist
-- Only keep streams that are at least 30 seconds long
-- Add stream per day of week and hour
-- Refine categories of stream distribution
-- Create simple view components
-- Add duration to evolution chart
-- Returns number with language-sensitive representation
-- Render simple view by year
+- Start on the simple view
+- *(dependabot)* Add gitsubmodule updates configuration for blog dependencies
+- Rename ExpertView to DetailedView
+- Setup moon
+- Add support for hugo blog
 
 ### 🐛 Bug Fixes
 
-- *(Dropzone.tsx)* Improve label by specifying which data
-- View StreamPerMonth per month
+- Define default pull request template
+- Fetch repo before moon
+
+### 🚜 Refactor
+
+- Rename StreamPerMonth return type and query name
+- Rename StreamPerHour return type and query name
+- Rename SummaryPerYear return type and query name
+- Rename TopTracks return type and query name
+- Rename TopArtists return type and query name
+- Rename summarizeQuery return type and query name
+- Handle queryTop10Evolution and streamPerDayOfWeekQueryByYear
+- Rename Charts to ExpertView
+- Move expert chart features to a specific folder
+- Move summarize feature to a specific folder
 
 ### 📚 Documentation
 
-- Fix ci labels
-- *(SECURITY.md)* Initial security policy
-- Add development guide with Spotify setup instructions
-- Update the readme with the new ui
+- Add testing best practices to CONTRIBUTING.md
+- Update CONTRIBUTING.md with Testing Best Practices
+- Introduce ADRs
+- Tooling for Monorepo Management
 
 ### 🎨 Styling
 
-- Format SQL query
-- Improve readability
+- Review the overall style
 
 ### 🧪 Testing
 
-- Mock queryDB to return Apache Arrow Table
-- Fix DropZoneWrapper prop
+- Remove components mocks from ExpertView tests
+- Remove vi.mock from TracksyWrapper tests
+- Fix flaky test by adding secondary platform sort
+- Remove vi.mock from FunFacts tests
+- Remove vi.mock from ListeningRhythm tests
+- Remove vi.mock from SeasonalPatterns tests
+- Remove vi.mock from StreamPerHour tests
+- Remove vi.mock from StreamPerMonth tests
+- Remove vi.mock from SummaryPerYear tests
+- Remove vi.mock from TopArtist tests
+- Remove vi.mock from TopArtists tests
+- Remove vi.mock from TopStreak tests
+- Remove vi.mock from TopTracks tests
+- Remove vi.mock from TotalStreams tests
+- Remove vi.mock from StreamPerDayOfWeek tests
+- Remove vi.mock from Results tests
+- Fix flaky tests due to test preparation
 
 ### ⚙️ Miscellaneous Tasks
 
-- Remove the dependency the dependency that does not change from useEffect
-- Reduce abstraction
-- Reduce plot recomputation
-- Remove useless react import
-- Use json instead of arrow
-- Use band instead of utc
-- Use double instead of integer
-- *(lint)* Add isort rules
+- Disable eslint rule on default export
+- Add ESLint rule to restrict mocks
+- Run tests on main branch
+- Adapt CH actions to use moon
+- *(release)* V0.3.1
