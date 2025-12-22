@@ -45,12 +45,12 @@ jobs:
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Generate a changelog
+      - name: Update CHANGELOG.md
         id: git-cliff
         uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
-          args: --github-repo ${{ github.repository }} --latest --no-exec # --output CHANGELOG.md
+          args: --tag ${{ steps.version.outputs.tag }} --github-repo ${{ github.repository }} --output CHANGELOG.md
 
       - name: Update SECURITY.md
         run: |
@@ -62,7 +62,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit version bump
+      - name: Commit changes
         run: |
           if git diff --quiet; then
             echo "❌ No changes to commit"
@@ -72,15 +72,19 @@ jobs:
           git add .
           git commit -m "chore(release): ${{ steps.version.outputs.tag }}"
 
-      - name: Create git tag
+      - name: Create tag
         run: git tag "${{ steps.version.outputs.tag }}"
 
       - name: Push commit and tag
         run: |
+          git switch -c wip-${{ steps.version.outputs.tag }}
           git push origin HEAD
           git push origin --tags
 
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create "${{ steps.version.outputs.tag }}" --title "Release ${{ steps.version.outputs.tag }}" --notes "${{ steps.git-cliff.outputs.content }}" --draft
+        run: |
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "Release ${{ steps.version.outputs.tag }}" \
+            --notes "${{ steps.git-cliff.outputs.content }}"
