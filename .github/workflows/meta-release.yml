@@ -77,7 +77,6 @@ jobs:
 
       - name: Push commit and tag
         run: |
-          git switch -c wip-${{ steps.version.outputs.tag }}
           git push origin HEAD
           git push origin --tags
 
