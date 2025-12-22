@@ -1,0 +1,13 @@
+tasks:
+  bump-version:
+    description: "Bump version of subprojects"
+    command: bash
+    args:
+      - -c
+      - |
+        set -euo pipefail
+        echo "Bumping version: $VERSION_BUMP"
+        [[ -f "package.json" ]] && pnpm version "$VERSION_BUMP" --no-git-tag-version || true
+        [[ -f "pyproject.toml" ]] && uv version --bump "$VERSION_BUMP" || true
+    env:
+      VERSION_BUMP: $VERSION_BUMP
