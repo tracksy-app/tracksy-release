@@ -36,7 +36,7 @@ jobs:
       - name: Bump version
         env:
           VERSION_BUMP: ${{ inputs.bump }}
-        run: moon run bump-version
+        run: moon run :bump-version
 
       - name: Read version
         id: version
