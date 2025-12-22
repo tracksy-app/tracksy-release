@@ -2,20 +2,18 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.3.2](https://github.com/tracksy-app/tracksy-release/compare/v0.3.1..v0.3.2) - 2025-12-22
+## [0.3.3](https://github.com/tracksy-app/tracksy-release/compare/v0.3.2..v0.3.3) - 2025-12-22
 
 ### 📦 Other (unconventional)
 
-- Remove code owners from CODEOWNERS file - ([c780012](https://github.com/tracksy-app/tracksy-release/commit/c780012bcd0c2c762fcfc92489a87e10668eae9b))
-- Merge pull request #2 from tracksy-app/wip-v0.3.1
+- Add configuration for versioning and changelog
 
-chore(release): v0.3.1 - ([db7ee96](https://github.com/tracksy-app/tracksy-release/commit/db7ee96cbbfbcce1d0a97fee11afd40cf147c282))
-- Remove branch creation before pushing changes - ([60469ef](https://github.com/tracksy-app/tracksy-release/commit/60469ef291a2a274db3de0b1eada953c1905e12e))
+Added configuration for version bumping, git commit parsing, and changelog generation. - ([643e975](https://github.com/tracksy-app/tracksy-release/commit/643e9758f6682c98e7d226ad05bfb5f882d540fe))
 
 
 ## Commit Statistics 📊
 
-- 3 commit(s) contributed to the release.
+- 1 commit(s) contributed to the release.
 - 0 day(s) passed between the first and last commit.
 - 0 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
