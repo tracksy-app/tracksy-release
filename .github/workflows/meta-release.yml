@@ -23,6 +23,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v6
         with:
+          # all history is needed to generate the CHANGELOG.md
           fetch-depth: 0
 
       - name: Install moon
@@ -46,17 +47,18 @@ jobs:
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
 
       - name: Generate release notes
-        id: git-cliff
+        id: git-cliff-release-notes
         uses: orhun/git-cliff-action@v4
         with:
           config: cliff.toml
-          args: --latest --strip header,footer
+          args: --latest --strip all
 
       - name: Update CHANGELOG.md
-        run: |
-          git cliff --tag ${{ steps.version.outputs.tag }} \
-            --github-repo ${{ github.repository }} \
-            --output CHANGELOG.md
+        id: git-cliff-changelog
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: cliff.toml
+          args: --tag ${{ steps.version.outputs.tag }} --github-repo ${{ github.repository }} --output CHANGELOG.md
 
       - name: Update SECURITY.md
         run: |
@@ -92,5 +94,5 @@ jobs:
         run: |
           gh release create "${{ steps.version.outputs.tag }}" \
             --title "Release ${{ steps.version.outputs.tag }}" \
-            --notes "${{ steps.git-cliff.outputs.content }}" \
+            --notes "${{ steps.git-cliff-release-notes.outputs.content }}" \
             --latest
