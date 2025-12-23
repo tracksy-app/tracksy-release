@@ -83,7 +83,7 @@ jobs:
 
       - name: Push commit and tag
         run: |
-          git push origin HEAD
+          git push origin main
           git push origin --tags
 
       - name: Create GitHub Release
