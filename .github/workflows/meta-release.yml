@@ -42,37 +42,51 @@ jobs:
           if [ -z "${{ inputs.bump }}" ]; then
             echo "🤖 Auto-detecting bump type using git-cliff..."
 
-            # Use git-cliff to calculate the next version based on conventional commits
-            # This uses the [bump] configuration in .github/cliff-changelog.toml
             CURRENT_VERSION=$(node -p "require('./app/package.json').version")
             echo "Current version: $CURRENT_VERSION"
 
-            # git-cliff --bumped-version returns the next version
-            NEXT_VERSION=$(git cliff --config .github/cliff-changelog.toml --bumped-version 2>/dev/null || echo "")
+            # Capture both stdout and stderr from git-cliff
+            set +e  # Don't exit on error yet, we want to capture it
+            ERROR_OUTPUT=$(mktemp)
+            NEXT_VERSION=$(git cliff --config .github/cliff-changelog.toml --bumped-version 2>"$ERROR_OUTPUT")
+            EXIT_CODE=$?
+            set -e  # Re-enable exit on error
 
-            if [ -z "$NEXT_VERSION" ]; then
-              # Fallback: no version bump detected (no conventional commits)
-              BUMP="patch"
-              echo "⚠️ No conventional commits detected, defaulting to patch"
-            else
-              echo "Next version calculated by git-cliff: $NEXT_VERSION"
-              
-              # Determine bump type by comparing versions
-              CURRENT_MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
-              CURRENT_MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
-              NEXT_MAJOR=$(echo "$NEXT_VERSION" | cut -d. -f1)
-              NEXT_MINOR=$(echo "$NEXT_VERSION" | cut -d. -f2)
-              
-              if [ "$NEXT_MAJOR" != "$CURRENT_MAJOR" ]; then
-                BUMP="major"
-                echo "📊 git-cliff detected → major bump ($CURRENT_VERSION → $NEXT_VERSION)"
-              elif [ "$NEXT_MINOR" != "$CURRENT_MINOR" ]; then
-                BUMP="minor"
-                echo "📊 git-cliff detected → minor bump ($CURRENT_VERSION → $NEXT_VERSION)"
-              else
-                BUMP="patch"
-                echo "📊 git-cliff detected → patch bump ($CURRENT_VERSION → $NEXT_VERSION)"
+            if [ $EXIT_CODE -ne 0 ] || [ -z "$NEXT_VERSION" ]; then
+              echo "❌ ERROR: git-cliff failed to calculate next version"
+              if [ -s "$ERROR_OUTPUT" ]; then
+                echo "git-cliff error output:"
+                cat "$ERROR_OUTPUT"
               fi
+              echo "💡 This usually means:"
+              echo "   - No conventional commits since last tag"
+              echo "   - Or git-cliff configuration issue"
+              echo ""
+              echo "Please either:"
+              echo "   1. Add conventional commits (feat:, fix:, etc.)"
+              echo "   2. Or trigger workflow with manual bump type selection"
+              rm -f "$ERROR_OUTPUT"
+              exit 1
+            fi
+            rm -f "$ERROR_OUTPUT"
+
+            echo "Next version calculated by git-cliff: $NEXT_VERSION"
+
+            # Determine bump type by comparing versions
+            CURRENT_MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
+            CURRENT_MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
+            NEXT_MAJOR=$(echo "$NEXT_VERSION" | cut -d. -f1)
+            NEXT_MINOR=$(echo "$NEXT_VERSION" | cut -d. -f2)
+
+            if [ "$NEXT_MAJOR" != "$CURRENT_MAJOR" ]; then
+              BUMP="major"
+              echo "📊 git-cliff detected → major bump ($CURRENT_VERSION → $NEXT_VERSION)"
+            elif [ "$NEXT_MINOR" != "$CURRENT_MINOR" ]; then
+              BUMP="minor"
+              echo "📊 git-cliff detected → minor bump ($CURRENT_VERSION → $NEXT_VERSION)"
+            else
+              BUMP="patch"
+              echo "📊 git-cliff detected → patch bump ($CURRENT_VERSION → $NEXT_VERSION)"
             fi
           else
             # Manual mode
