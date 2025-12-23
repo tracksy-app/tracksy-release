@@ -36,13 +36,6 @@ jobs:
       - name: Setup toolchains
         run: moon setup
 
-      - name: Determine next version with git-cliff
-        id: git-cliff-bump
-        uses: orhun/git-cliff-action@v4
-        with:
-          config: .github/cliff-changelog.toml
-          args: --bumped-version --output /dev/null
-
       - name: Read current version
         id: current-version
         run: |
@@ -55,7 +48,7 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff-changelog.toml
-          args: --bump --unreleased --github-repo ${{ github.repository }} --output CHANGELOG.md --context
+          args: --bump --unreleased --github-repo ${{ github.repository }} --output CHANGELOG.md
 
       - name: Determine next version
         id: next-version
