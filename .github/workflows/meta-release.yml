@@ -50,7 +50,7 @@ jobs:
         id: git-cliff-changelog
         uses: orhun/git-cliff-action@v4
         with:
-          config: cliff.toml
+          config: .github/cliff-changelog.toml
           args: --tag ${{ steps.version.outputs.tag }} --github-repo ${{ github.repository }} --output CHANGELOG.md
 
       - name: Update SECURITY.md
@@ -80,7 +80,7 @@ jobs:
         id: git-cliff-release-notes
         uses: orhun/git-cliff-action@v4
         with:
-          config: cliff.toml
+          config: .github/cliff-release-notes.toml
           args: --latest --strip all
 
       - name: Push commit and tag
