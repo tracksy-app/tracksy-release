@@ -35,16 +35,44 @@ jobs:
       - name: Setup toolchains
         run: moon setup
 
-      - name: Determine bump strategy
+      - name: Determine bump from commits (auto)
+        id: cliff-bump
+        if: ${{ github.event.inputs.bump == 'auto' }}
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: .github/cliff-changelog.toml
+          args: --bump --unreleased
+
+      - name: Resolve bump strategy
         id: bump
         run: |
-          if [[ "${{ github.event.inputs.bump }}" != "auto" ]]; then
-            echo "strategy=${{ github.event.inputs.bump }}" >> $GITHUB_OUTPUT
+          INPUT="${{ github.event.inputs.bump }}"
+
+          if [[ "$INPUT" != "auto" ]]; then
+            echo "strategy=$INPUT" >> $GITHUB_OUTPUT
+            echo "Using manual bump: $INPUT"
             exit 0
           fi
 
-          BUMP=$(git cliff --bump --unreleased --strip all)
-          echo "strategy=$BUMP" >> $GITHUB_OUTPUT
+          CURRENT=$(node -p "require('./app/package.json').version")
+          NEXT="${{ steps.cliff-bump.outputs.version }}"
+
+          echo "Current version: $CURRENT"
+          echo "Next version:    $NEXT"
+
+          IFS=. read -r c1 c2 c3 <<< "$CURRENT"
+          IFS=. read -r n1 n2 n3 <<< "$NEXT"
+
+          if [[ "$n1" -gt "$c1" ]]; then
+            STRATEGY=major
+          elif [[ "$n2" -gt "$c2" ]]; then
+            STRATEGY=minor
+          else
+            STRATEGY=patch
+          fi
+
+          echo "strategy=$STRATEGY" >> $GITHUB_OUTPUT
+          echo "Detected bump strategy: $STRATEGY"
 
       - name: Bump version
         run: moon run :bump-version
