@@ -92,7 +92,7 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff-changelog.toml
-          args: --tag ${{ steps.version.outputs.tag }} --output CHANGELOGDEBUG.md
+          args: --tag ${{ steps.version.outputs.tag }} --output CHANGELOG.md
 
       - name: Update SECURITY.md
         run: |
