@@ -81,7 +81,7 @@ body = """
 {%- endif %}
 {%- if statistics.days_passed_since_last_release %}
 	- {{ statistics.days_passed_since_last_release }} day(s) passed between releases.
-{%- endif %}
+{%- endif %}\n\n
 """
 
 footer = """
