@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.2](https://github.com/tracksy-app/tracksy-release/compare/v0.6.1..v0.6.2) - 2025-12-23
+
+### ⬆️ Bump
+
+- *(ci)* Test auto bump - ([203d22a](https://github.com/tracksy-app/tracksy-release/commit/203d22a9daf8c49144c12495c2f1dc9337a8cccb))
 ## [0.6.1](https://github.com/tracksy-app/tracksy-release/compare/v0.6.0..v0.6.1) - 2025-12-23
 
 ### ✨  Features
