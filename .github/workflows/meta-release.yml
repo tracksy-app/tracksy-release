@@ -92,4 +92,5 @@ jobs:
         run: |
           gh release create "${{ steps.version.outputs.tag }}" \
             --title "Release ${{ steps.version.outputs.tag }}" \
-            --notes "${{ steps.git-cliff.outputs.content }}"
+            --notes "${{ steps.git-cliff.outputs.content }}" \
+            --latest
