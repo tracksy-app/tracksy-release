@@ -36,74 +36,15 @@ jobs:
       - name: Setup toolchains
         run: moon setup
 
-      - name: Determine version bump
-        id: bump
-        run: |
-          if [ -z "${{ inputs.bump }}" ]; then
-            echo "🤖 Auto-detecting bump type using git-cliff..."
+      - name: Determine next version with git-cliff
+        id: git-cliff-bump
+        uses: orhun/git-cliff-action@v4
+        with:
+          config: .github/cliff-changelog.toml
+          args: --bumped-version --output /dev/null
 
-            CURRENT_VERSION=$(node -p "require('./app/package.json').version")
-            echo "Current version: $CURRENT_VERSION"
-
-            # Capture both stdout and stderr from git-cliff
-            set +e  # Don't exit on error yet, we want to capture it
-            ERROR_OUTPUT=$(mktemp)
-            NEXT_VERSION=$(git cliff --config .github/cliff-changelog.toml --bumped-version 2>"$ERROR_OUTPUT")
-            EXIT_CODE=$?
-            set -e  # Re-enable exit on error
-
-            if [ $EXIT_CODE -ne 0 ] || [ -z "$NEXT_VERSION" ]; then
-              echo "❌ ERROR: git-cliff failed to calculate next version"
-              if [ -s "$ERROR_OUTPUT" ]; then
-                echo "git-cliff error output:"
-                cat "$ERROR_OUTPUT"
-              fi
-              echo "💡 This usually means:"
-              echo "   - No conventional commits since last tag"
-              echo "   - Or git-cliff configuration issue"
-              echo ""
-              echo "Please either:"
-              echo "   1. Add conventional commits (feat:, fix:, etc.)"
-              echo "   2. Or trigger workflow with manual bump type selection"
-              rm -f "$ERROR_OUTPUT"
-              exit 1
-            fi
-            rm -f "$ERROR_OUTPUT"
-
-            echo "Next version calculated by git-cliff: $NEXT_VERSION"
-
-            # Determine bump type by comparing versions
-            CURRENT_MAJOR=$(echo "$CURRENT_VERSION" | cut -d. -f1)
-            CURRENT_MINOR=$(echo "$CURRENT_VERSION" | cut -d. -f2)
-            NEXT_MAJOR=$(echo "$NEXT_VERSION" | cut -d. -f1)
-            NEXT_MINOR=$(echo "$NEXT_VERSION" | cut -d. -f2)
-
-            if [ "$NEXT_MAJOR" != "$CURRENT_MAJOR" ]; then
-              BUMP="major"
-              echo "📊 git-cliff detected → major bump ($CURRENT_VERSION → $NEXT_VERSION)"
-            elif [ "$NEXT_MINOR" != "$CURRENT_MINOR" ]; then
-              BUMP="minor"
-              echo "📊 git-cliff detected → minor bump ($CURRENT_VERSION → $NEXT_VERSION)"
-            else
-              BUMP="patch"
-              echo "📊 git-cliff detected → patch bump ($CURRENT_VERSION → $NEXT_VERSION)"
-            fi
-          else
-            # Manual mode
-            BUMP="${{ inputs.bump }}"
-            echo "👤 Using manual bump: $BUMP"
-          fi
-
-          echo "bump=$BUMP" >> $GITHUB_OUTPUT
-          echo "✅ Version bump type: $BUMP"
-
-      - name: Bump version
-        env:
-          VERSION_BUMP: ${{ steps.bump.outputs.bump }}
-        run: moon run :bump-version
-
-      - name: Read version
-        id: version
+      - name: Read current version
+        id: current-version
         run: |
           VERSION=$(node -p "require('./app/package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -114,11 +55,23 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff-changelog.toml
-          args: --tag ${{ steps.version.outputs.tag }} --github-repo ${{ github.repository }} --output CHANGELOG.md
+          args: --bump --unreleased --github-repo ${{ github.repository }} --output CHANGELOG.md --context
+
+      - name: Determine next version
+        id: next-version
+        run: |
+          VERSION=$(echo "${{ steps.git-cliff-changelog.outputs.content }}" | jq -r .[0].version)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Bump version
+        env:
+          VERSION_BUMP: ${{ steps.next-version.outputs.version }}
+        run: moon run :bump-version
 
       - name: Update SECURITY.md
         run: |
-          MAJOR_MINOR=$(echo "${{ steps.version.outputs.version }}" | cut -d. -f1,2)
+          MAJOR_MINOR=$(echo "${{ steps.next-version.outputs.version }}" | cut -d. -f1,2)
           sed -i "s/[0-9]\+\.[0-9]\+\./${MAJOR_MINOR}./g" SECURITY.md
 
       - name: Configure git
@@ -134,10 +87,10 @@ jobs:
           fi
 
           git add .
-          git commit -m "chore(release): ${{ steps.version.outputs.tag }}"
+          git commit -m "chore(release): ${{ steps.next-version.outputs.tag }}"
 
       - name: Create tag
-        run: git tag "${{ steps.version.outputs.tag }}"
+        run: git tag "${{ steps.next-version.outputs.tag }}"
 
       - name: Generate release notes
         id: git-cliff-release-notes
@@ -156,7 +109,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ steps.version.outputs.tag }}" \
-            --title "Release ${{ steps.version.outputs.tag }}" \
+          gh release create "${{ steps.next-version.outputs.tag }}" \
+            --title "Release ${{ steps.next-version.outputs.tag }}" \
             --notes "${{ steps.git-cliff-release-notes.outputs.content }}" \
             --latest
