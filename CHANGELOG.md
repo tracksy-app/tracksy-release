@@ -2,31 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.6.1](https://github.com/tracksy-app/tracksy-release/compare/v0.6.0..v0.6.1) - 2025-12-23
+
+### ✨  Features
+
+- Use different template for release notes and changelog - ([670bdaf](https://github.com/tracksy-app/tracksy-release/commit/670bdafefdd3b2fd95149cce7990d3e61efc728b))
+
+### 🐛 Bug Fixes
+
+- Reset SECURITY.md - ([f7fe2a5](https://github.com/tracksy-app/tracksy-release/commit/f7fe2a5cc962522b8b7c01d1e8b149941d88578c))
+- EOF - ([2b03603](https://github.com/tracksy-app/tracksy-release/commit/2b03603c897abde523bd28b80d36e1ef54bc0ffa))
 ## [0.6.0](https://github.com/tracksy-app/tracksy-release/compare/v0.5.1..v0.6.0) - 2025-12-23
 
 ### 🐛 Bug Fixes
 
 - Fix: ignore commit description - ([1a8a299](https://github.com/tracksy-app/tracksy-release/commit/1a8a2991bc10c5e90dc9b2afe3ec0f2d819f1d1c))
-## Commit Statistics 📊
-
-- 1 commit(s) contributed to the release.
-- 0 day(s) passed between the first and last commit.
-- 0 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
 ## [0.5.1](https://github.com/tracksy-app/tracksy-release/compare/v0.5.0..v0.5.1) - 2025-12-23
 
 ### 🐛 Bug Fixes
 
 - Rm git message - ([c87df23](https://github.com/tracksy-app/tracksy-release/commit/c87df230704de647ade51526f32f44db9244ba07))
 - Release note - ([0617475](https://github.com/tracksy-app/tracksy-release/commit/06174758d4ff3456ac9ba56283f9439f7963f875))
-## Commit Statistics 📊
-
-- 2 commit(s) contributed to the release.
-- 0 day(s) passed between the first and last commit.
-- 2 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
 ## [0.5.0](https://github.com/tracksy-app/tracksy-release/compare/v0.4.3..v0.5.0) - 2025-12-23
 
 ### ✨  Features
@@ -43,13 +39,6 @@ All notable changes to this project will be documented in this file.
 - *(ci)* Bug 3 - ([0ec9ad2](https://github.com/tracksy-app/tracksy-release/commit/0ec9ad2024bd06c3b05e84f92f7e364c2e3c35da))
 - Revert "test(ci): test" - ([6f8ee63](https://github.com/tracksy-app/tracksy-release/commit/6f8ee63630cefa1ddab49e39425730721157229e))
 - Bug 2 - ([9264acc](https://github.com/tracksy-app/tracksy-release/commit/9264acca0c5730ff13d3f92f43e48723dfacfd5e))
-## Commit Statistics 📊
-
-- 6 commit(s) contributed to the release.
-- 0 day(s) passed between the first and last commit.
-- 5 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
 ## [0.4.3](https://github.com/tracksy-app/tracksy-release/compare/v0.3.0..v0.4.3) - 2025-12-23
 
 ### ✨  Features
@@ -158,14 +147,6 @@ All notable changes to this project will be documented in this file.
 - Remove branch creation before pushing changes - ([60469ef](https://github.com/tracksy-app/tracksy-release/commit/60469ef291a2a274db3de0b1eada953c1905e12e))
 - Add configuration for versioning and changelog - ([643e975](https://github.com/tracksy-app/tracksy-release/commit/643e9758f6682c98e7d226ad05bfb5f882d540fe))
 - Remove contributors for debug - ([65d8fb9](https://github.com/tracksy-app/tracksy-release/commit/65d8fb9b2c84463da2878ca90a82eb317286990d))
-## Commit Statistics 📊
-
-- 80 commit(s) contributed to the release.
-- 8 day(s) passed between the first and last commit.
-- 68 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-- 18 day(s) passed between releases.
-
 ## [0.3.0](https://github.com/tracksy-app/tracksy-release/compare/v0.2.0..v0.3.0) - 2025-12-05
 
 ### ✨  Features
@@ -249,14 +230,6 @@ All notable changes to this project will be documented in this file.
 - Use json instead of arrow - ([b01273b](https://github.com/tracksy-app/tracksy-release/commit/b01273bebe7d76c7fe966442fc5743a2e6e30f64))
 - Use band instead of utc - ([b7429c1](https://github.com/tracksy-app/tracksy-release/commit/b7429c1a94bb14dd021c79bfedd03835dbb37afc))
 - Use double instead of integer - ([d76876c](https://github.com/tracksy-app/tracksy-release/commit/d76876c0aa94d381086a479e28ed98e4e9a795eb))
-## Commit Statistics 📊
-
-- 64 commit(s) contributed to the release.
-- 58 day(s) passed between the first and last commit.
-- 63 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-- 59 day(s) passed between releases.
-
 ## [0.2.0](https://github.com/tracksy-app/tracksy-release/compare/v0.1.0..v0.2.0) - 2025-10-07
 
 ### ✨  Features
@@ -402,14 +375,6 @@ All notable changes to this project will be documented in this file.
 - Manually run production deployment - ([80990e8](https://github.com/tracksy-app/tracksy-release/commit/80990e819328fcb6fcdb9c943aec2df475203cdb))
 - Ops(): add workflow configuration to automerge minor and patch dependabot PRs - ([994a400](https://github.com/tracksy-app/tracksy-release/commit/994a4004b3a1c10bfd4f35fcbb8e3bd1a5c0379b))
 - Ops(): deploy preview with label - ([8c98ef3](https://github.com/tracksy-app/tracksy-release/commit/8c98ef3e56d9b13c6de5e934e9f62170cbef770a))
-## Commit Statistics 📊
-
-- 120 commit(s) contributed to the release.
-- 190 day(s) passed between the first and last commit.
-- 94 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-- 235 day(s) passed between releases.
-
 ## [0.1.0] - 2025-02-14
 
 ### ✨  Features
@@ -474,11 +439,4 @@ All notable changes to this project will be documented in this file.
 - Astro check ignore tests files - ([555e2fa](https://github.com/tracksy-app/tracksy-release/commit/555e2fa334ba2e640ed46a69c2ed191f364c165f))
 - Avoid export default - ([a795c77](https://github.com/tracksy-app/tracksy-release/commit/a795c77ef239fc77b6a41e5a26ac7ccd69aa5389))
 - Refacto(DropzoneWrapper) add intermediate hook - ([a87f01c](https://github.com/tracksy-app/tracksy-release/commit/a87f01c27a8da2a7ab012a27f82b0fce49d29fd6))
-## Commit Statistics 📊
-
-- 51 commit(s) contributed to the release.
-- 79 day(s) passed between the first and last commit.
-- 1 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
 <!-- generated by git-cliff -->
