@@ -2,6 +2,31 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.5.0](https://github.com/tracksy-app/tracksy-release/compare/v0.4.3..v0.5.0) - 2025-12-23
+
+### ✨  Features
+
+- *(ci)* Feature - ([c86dc07](https://github.com/tracksy-app/tracksy-release/commit/c86dc07fa46d33aa22ff275bc17d02c607cba41d))
+
+### 🧪 Testing
+
+- *(ci)* Test - ([cc088ae](https://github.com/tracksy-app/tracksy-release/commit/cc088ae45ee0ddfcf932faa1f4a7ca725955c705))
+
+### 📦 Other (unconventional)
+
+- *(ci)* Bug - ([6ff1f17](https://github.com/tracksy-app/tracksy-release/commit/6ff1f1715807c23e84f324d897eb9b9e9e2e1e4d))
+- *(ci)* Bug 3 - ([0ec9ad2](https://github.com/tracksy-app/tracksy-release/commit/0ec9ad2024bd06c3b05e84f92f7e364c2e3c35da))
+- Revert "test(ci): test"
+
+This reverts commit 4e315256f61a6fc47d53abd47aa706abd2553038. - ([6f8ee63](https://github.com/tracksy-app/tracksy-release/commit/6f8ee63630cefa1ddab49e39425730721157229e))
+- Bug 2 - ([9264acc](https://github.com/tracksy-app/tracksy-release/commit/9264acca0c5730ff13d3f92f43e48723dfacfd5e))
+## Commit Statistics 📊
+
+- 6 commit(s) contributed to the release.
+- 0 day(s) passed between the first and last commit.
+- 5 commit(s) parsed as conventional.
+- 0 linked issue(s) detected in commits.
+
 ## [0.4.3](https://github.com/tracksy-app/tracksy-release/compare/v0.3.0..v0.4.3) - 2025-12-23
 
 ### ✨  Features
