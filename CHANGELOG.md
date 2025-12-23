@@ -2,92 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [0.4.1](https://github.com/tracksy-app/tracksy-release/compare/v0.4.0..v0.4.1) - 2025-12-22
-
-### ✨  Features
-
-- Add a file - ([bda3188](https://github.com/tracksy-app/tracksy-release/commit/bda3188dc7a79714a735748f59a926a81711e319))
-- Stop the blog - ([adfce2f](https://github.com/tracksy-app/tracksy-release/commit/adfce2fb15f2eaa4dd7baacd00b126b455ce1d9b))
-
-### 🐛 Bug Fixes
-
-- *(ci)* Select last version - ([904d71d](https://github.com/tracksy-app/tracksy-release/commit/904d71dad6fda10c1e471e177a059ed83d6a8ebb))
-- The file - ([573348a](https://github.com/tracksy-app/tracksy-release/commit/573348a9c83e129335e14a4a1c8eba56aed362f0))
-- Remove ci - ([d01d685](https://github.com/tracksy-app/tracksy-release/commit/d01d68545cb6a1380e0a838d9869d0599ada4893))
-- Stop python - ([3539a78](https://github.com/tracksy-app/tracksy-release/commit/3539a7810b07f97a38df5056644b19ee2d0da84b))
-- Push to the main branch - ([78078ef](https://github.com/tracksy-app/tracksy-release/commit/78078ef24ef3a25ab2b61a69e90a0a7ec857f5e9))
-
-### 🚜 Refactor
-
-- The file - ([fc02c1a](https://github.com/tracksy-app/tracksy-release/commit/fc02c1a38a850198c7596fc2a2a5d8c8e9011bdb))
-
-### ⬆️ Bump
-
-- *(ci)* Remove ci - ([cfc80d4](https://github.com/tracksy-app/tracksy-release/commit/cfc80d45250972520d3bfb94f4550acef7461014))
-- The file - ([fbf13e6](https://github.com/tracksy-app/tracksy-release/commit/fbf13e6fde0996e160a431e2ffbc1b1fed085b69))
-- Remove ci - ([eda9f52](https://github.com/tracksy-app/tracksy-release/commit/eda9f52d3bfb15a4198b84403fd6d1109960cdd2))
-- Stop dependably - ([5388141](https://github.com/tracksy-app/tracksy-release/commit/5388141e5f41ae6bc908a14e7a9736c7463c3ac0))
-
-
-## Commit Statistics 📊
-
-- 12 commit(s) contributed to the release.
-- 0 day(s) passed between the first and last commit.
-- 12 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
-## [0.4.0](https://github.com/tracksy-app/tracksy-release/compare/v0.3.3..v0.4.0) - 2025-12-22
-
-### ✨  Features
-
-- Idk - ([c9baa8a](https://github.com/tracksy-app/tracksy-release/commit/c9baa8af632e175a61873b786248d0291cca9379))
-
-### 🐛 Bug Fixes
-
-- *(ci)* Deactivate verbosity - ([3923ac3](https://github.com/tracksy-app/tracksy-release/commit/3923ac30894df28cbab69b965c7d2653493ac6ab))
-
-
-## Commit Statistics 📊
-
-- 2 commit(s) contributed to the release.
-- 0 day(s) passed between the first and last commit.
-- 2 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
-## [0.3.3](https://github.com/tracksy-app/tracksy-release/compare/v0.3.2..v0.3.3) - 2025-12-22
-
-### 📦 Other (unconventional)
-
-- Add configuration for versioning and changelog
-
-Added configuration for version bumping, git commit parsing, and changelog generation. - ([643e975](https://github.com/tracksy-app/tracksy-release/commit/643e9758f6682c98e7d226ad05bfb5f882d540fe))
-
-
-## Commit Statistics 📊
-
-- 1 commit(s) contributed to the release.
-- 0 day(s) passed between the first and last commit.
-- 0 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
-## [0.3.2](https://github.com/tracksy-app/tracksy-release/compare/v0.3.1..v0.3.2) - 2025-12-22
-
-### 📦 Other (unconventional)
-
-- Merge pull request #2 from tracksy-app/wip-v0.3.1
-
-chore(release): v0.3.1 - ([db7ee96](https://github.com/tracksy-app/tracksy-release/commit/db7ee96cbbfbcce1d0a97fee11afd40cf147c282))
-- Remove branch creation before pushing changes - ([60469ef](https://github.com/tracksy-app/tracksy-release/commit/60469ef291a2a274db3de0b1eada953c1905e12e))
-
-
-## Commit Statistics 📊
-
-- 2 commit(s) contributed to the release.
-- 0 day(s) passed between the first and last commit.
-- 0 commit(s) parsed as conventional.
-- 0 linked issue(s) detected in commits.
-
-## [0.3.1](https://github.com/tracksy-app/tracksy-release/compare/v0.3.0..v0.3.1) - 2025-12-22
+## [0.4.3](https://github.com/tracksy-app/tracksy-release/compare/v0.3.0..v0.4.3) - 2025-12-23
 
 ### ✨  Features
 
@@ -97,11 +12,25 @@ chore(release): v0.3.1 - ([db7ee96](https://github.com/tracksy-app/tracksy-relea
 - Rename ExpertView to DetailedView - ([7a17b87](https://github.com/tracksy-app/tracksy-release/commit/7a17b8731fd161e903f7e3749019a163d0142957))
 - Setup moon - ([df29770](https://github.com/tracksy-app/tracksy-release/commit/df297706488d16963cd19a2a05972ae86ebcb5f4))
 - Add support for hugo blog - ([395ce8b](https://github.com/tracksy-app/tracksy-release/commit/395ce8b0c2a599c33c513cc8208bfde2065b647f))
+- Idk - ([c9baa8a](https://github.com/tracksy-app/tracksy-release/commit/c9baa8af632e175a61873b786248d0291cca9379))
+- Add a file - ([bda3188](https://github.com/tracksy-app/tracksy-release/commit/bda3188dc7a79714a735748f59a926a81711e319))
+- Stop the blog - ([adfce2f](https://github.com/tracksy-app/tracksy-release/commit/adfce2fb15f2eaa4dd7baacd00b126b455ce1d9b))
+- Mark new release as latest - ([b75b508](https://github.com/tracksy-app/tracksy-release/commit/b75b508aac21ecaf5232588f3f5f0cd5999d85c4))
 
 ### 🐛 Bug Fixes
 
+- *(ci)* Deactivate verbosity - ([3923ac3](https://github.com/tracksy-app/tracksy-release/commit/3923ac30894df28cbab69b965c7d2653493ac6ab))
+- *(ci)* Select last version - ([904d71d](https://github.com/tracksy-app/tracksy-release/commit/904d71dad6fda10c1e471e177a059ed83d6a8ebb))
+- *(ci)* Fix things - ([af9e767](https://github.com/tracksy-app/tracksy-release/commit/af9e767e34b4170e337c5eec2472d26918b5bb64))
 - Define default pull request template - ([ee175bc](https://github.com/tracksy-app/tracksy-release/commit/ee175bc60f2b2dab327b3c2fd6df6f9094fe1655))
 - Fetch repo before moon - ([39a5de5](https://github.com/tracksy-app/tracksy-release/commit/39a5de5f17218ba82d5f7d7628b58f0bc220bf68))
+- The file - ([573348a](https://github.com/tracksy-app/tracksy-release/commit/573348a9c83e129335e14a4a1c8eba56aed362f0))
+- Remove ci - ([d01d685](https://github.com/tracksy-app/tracksy-release/commit/d01d68545cb6a1380e0a838d9869d0599ada4893))
+- Stop python - ([3539a78](https://github.com/tracksy-app/tracksy-release/commit/3539a7810b07f97a38df5056644b19ee2d0da84b))
+- Push to the main branch - ([78078ef](https://github.com/tracksy-app/tracksy-release/commit/78078ef24ef3a25ab2b61a69e90a0a7ec857f5e9))
+- Remove useless files - ([e299a9a](https://github.com/tracksy-app/tracksy-release/commit/e299a9abc3b8bec17a7eb4342ff9a9501c516a55))
+- Release note - ([689ebe4](https://github.com/tracksy-app/tracksy-release/commit/689ebe4c402f341a92eb9c09d493b5f28f7f327a))
+- Update security.md - ([8e849ae](https://github.com/tracksy-app/tracksy-release/commit/8e849ae8dab2637da37cda07a6eb7e53586a01d5))
 
 ### 📚 Documentation
 
@@ -122,6 +51,7 @@ chore(release): v0.3.1 - ([db7ee96](https://github.com/tracksy-app/tracksy-relea
 - Rename Charts to ExpertView - ([32baf48](https://github.com/tracksy-app/tracksy-release/commit/32baf480eca493e276949be6395f0353e7b3b913))
 - Move expert chart features to a specific folder - ([243cb2f](https://github.com/tracksy-app/tracksy-release/commit/243cb2fbb03062df056cd46dfd0f5eaad406731e))
 - Move summarize feature to a specific folder - ([7a32843](https://github.com/tracksy-app/tracksy-release/commit/7a328436959d9285a2f8f7e665b386a7c3c5023c))
+- The file - ([fc02c1a](https://github.com/tracksy-app/tracksy-release/commit/fc02c1a38a850198c7596fc2a2a5d8c8e9011bdb))
 
 ### 🎨 Styling
 
@@ -153,6 +83,7 @@ chore(release): v0.3.1 - ([db7ee96](https://github.com/tracksy-app/tracksy-relea
 
 ### ⬆️ Bump
 
+- *(ci)* Remove ci - ([cfc80d4](https://github.com/tracksy-app/tracksy-release/commit/cfc80d45250972520d3bfb94f4550acef7461014))
 - *(deps)* Bump the npm-packages group in /app with 8 updates (#224) - ([15d6fc1](https://github.com/tracksy-app/tracksy-release/commit/15d6fc1e55d3e1035dbfc25cf6cb76037d9bb0d5))
 - *(deps)* Bump faker from 38.2.0 to 39.0.0 in /synthetic-datasets - ([3a4daf6](https://github.com/tracksy-app/tracksy-release/commit/3a4daf6f30b524b23c1cbe985ebd9db801ed43b3))
 - *(deps)* Bump tailwindcss from 3.4.18 to 3.4.19 in /app (#225) - ([a35bcb9](https://github.com/tracksy-app/tracksy-release/commit/a35bcb99dbf74131f4536a92ad48d90535597a26))
@@ -160,6 +91,10 @@ chore(release): v0.3.1 - ([db7ee96](https://github.com/tracksy-app/tracksy-relea
 - Disable eslint rule on default export - ([981234a](https://github.com/tracksy-app/tracksy-release/commit/981234a488e1cc2e98572ce79144c4096e2e48b3))
 - Add ESLint rule to restrict mocks - ([f3422da](https://github.com/tracksy-app/tracksy-release/commit/f3422dab47a8951eeca0133d8f3dfc1016740ad6))
 - Adapt CH actions to use moon - ([ee50790](https://github.com/tracksy-app/tracksy-release/commit/ee50790ec10766e187b14dfee4a7f9abf15b69a4))
+- The file - ([fbf13e6](https://github.com/tracksy-app/tracksy-release/commit/fbf13e6fde0996e160a431e2ffbc1b1fed085b69))
+- Remove ci - ([eda9f52](https://github.com/tracksy-app/tracksy-release/commit/eda9f52d3bfb15a4198b84403fd6d1109960cdd2))
+- Stop dependably - ([5388141](https://github.com/tracksy-app/tracksy-release/commit/5388141e5f41ae6bc908a14e7a9736c7463c3ac0))
+- Specify main as target - ([371cae0](https://github.com/tracksy-app/tracksy-release/commit/371cae079f80b69304f065738320c96336a183ae))
 
 ### 📦 Other (unconventional)
 
@@ -178,18 +113,21 @@ The goal is to avoid shipping code that downgrade our codebase coverage.
 wip - ([5eced89](https://github.com/tracksy-app/tracksy-release/commit/5eced8929eede94445cf43f8d73c52b18052d7a7))
 - Update version bump command in workflow - ([c1c67dc](https://github.com/tracksy-app/tracksy-release/commit/c1c67dcba15118268f93d9a8003a5452e5b79744))
 - Remove code owners from CODEOWNERS file - ([c780012](https://github.com/tracksy-app/tracksy-release/commit/c780012bcd0c2c762fcfc92489a87e10668eae9b))
+- Merge pull request #2 from tracksy-app/wip-v0.3.1
 
-## New Contributors ❤️
+chore(release): v0.3.1 - ([db7ee96](https://github.com/tracksy-app/tracksy-release/commit/db7ee96cbbfbcce1d0a97fee11afd40cf147c282))
+- Remove branch creation before pushing changes - ([60469ef](https://github.com/tracksy-app/tracksy-release/commit/60469ef291a2a274db3de0b1eada953c1905e12e))
+- Add configuration for versioning and changelog
 
-* @github-actions[bot] made their first contribution
-
+Added configuration for version bumping, git commit parsing, and changelog generation. - ([643e975](https://github.com/tracksy-app/tracksy-release/commit/643e9758f6682c98e7d226ad05bfb5f882d540fe))
+- Remove contributors for debug - ([65d8fb9](https://github.com/tracksy-app/tracksy-release/commit/65d8fb9b2c84463da2878ca90a82eb317286990d))
 ## Commit Statistics 📊
 
-- 56 commit(s) contributed to the release.
-- 7 day(s) passed between the first and last commit.
-- 47 commit(s) parsed as conventional.
+- 80 commit(s) contributed to the release.
+- 8 day(s) passed between the first and last commit.
+- 68 commit(s) parsed as conventional.
 - 0 linked issue(s) detected in commits.
-- 17 day(s) passed between releases.
+- 18 day(s) passed between releases.
 
 ## [0.3.0](https://github.com/tracksy-app/tracksy-release/compare/v0.2.0..v0.3.0) - 2025-12-05
 
@@ -274,12 +212,6 @@ wip - ([5eced89](https://github.com/tracksy-app/tracksy-release/commit/5eced8929
 - Use json instead of arrow - ([b01273b](https://github.com/tracksy-app/tracksy-release/commit/b01273bebe7d76c7fe966442fc5743a2e6e30f64))
 - Use band instead of utc - ([b7429c1](https://github.com/tracksy-app/tracksy-release/commit/b7429c1a94bb14dd021c79bfedd03835dbb37afc))
 - Use double instead of integer - ([d76876c](https://github.com/tracksy-app/tracksy-release/commit/d76876c0aa94d381086a479e28ed98e4e9a795eb))
-
-## New Contributors ❤️
-
-* @arthurzenika made their first contribution
-* @aneuhold made their first contribution
-
 ## Commit Statistics 📊
 
 - 64 commit(s) contributed to the release.
@@ -437,12 +369,6 @@ inspired by the template used by Pix: https://github.com/1024pix/.github - ([26e
 to deploy preview with our secrets on PRs from
 
 Co-authored-by: Gudsfile <gudsfile@protonmail.com> - ([8c98ef3](https://github.com/tracksy-app/tracksy-release/commit/8c98ef3e56d9b13c6de5e934e9f62170cbef770a))
-
-## New Contributors ❤️
-
-* @dependabot[bot] made their first contribution
-* @benjamin-frost made their first contribution
-
 ## Commit Statistics 📊
 
 - 120 commit(s) contributed to the release.
@@ -526,12 +452,6 @@ Co-authored-by: Tarektouati <19335073+Tarektouati@users.noreply.github.com> - ([
 - Refacto(DropzoneWrapper) add intermediate hook
 
 Co-authored-by: Tarektouati <19335073+Tarektouati@users.noreply.github.com> - ([a87f01c](https://github.com/tracksy-app/tracksy-release/commit/a87f01c27a8da2a7ab012a27f82b0fce49d29fd6))
-
-## New Contributors ❤️
-
-* @bengeois made their first contribution
-* @Tarektouati made their first contribution
-
 ## Commit Statistics 📊
 
 - 51 commit(s) contributed to the release.
