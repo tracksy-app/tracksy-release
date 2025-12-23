@@ -61,7 +61,7 @@ jobs:
       - name: Update SECURITY.md
         run: |
           MAJOR_MINOR=$(echo "${{ steps.version.outputs.version }}" | cut -d. -f1,2)
-          sed -i "s/[0-9]\+\.[0-9]\+\./${MAJOR}./g" SECURITY.md
+          sed -i "s/[0-9]\+\.[0-9]\+\./${MAJOR_MINOR}./g" SECURITY.md
 
       - name: Configure git
         run: |
