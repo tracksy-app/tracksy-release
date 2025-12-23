@@ -43,7 +43,7 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff-changelog.toml
-          args: --bump --unreleased
+          args: --bump --unreleased --output /dev/null
 
       - name: Resolve bump strategy
         id: bump
