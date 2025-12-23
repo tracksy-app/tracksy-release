@@ -4,31 +4,30 @@ on:
   workflow_dispatch:
     inputs:
       bump:
-        description: "Semantic of the update version"
+        description: "Semantic version bump"
         required: false
         type: choice
         options:
-          - ""
+          - auto
           - patch
           - minor
           - major
-        default: ""
+        default: auto
 
 jobs:
   release:
     runs-on: ubuntu-latest
 
     permissions:
-      contents: write # required for push, tag and release
+      contents: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v6
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          # all history is required to generate the CHANGELOG.md
-          fetch-depth: 0
+          fetch-depth: 0 # The entire history is required to generate the CHANGELOG.md file
 
-      - name: Install moon
+      - name: Install Moon
         uses: moonrepo/setup-toolchain@v0
         with:
           auto-install: false
@@ -36,35 +35,38 @@ jobs:
       - name: Setup toolchains
         run: moon setup
 
-      - name: Read current version
-        id: current-version
+      - name: Determine bump strategy
+        id: bump
+        run: |
+          if [ -n "${{ github.event.inputs.bump }}" ]; then
+            echo "strategy=${{ github.event.inputs.bump }}" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          BUMP=$(git cliff --bump --unreleased --strip all)
+          echo "strategy=$BUMP" >> $GITHUB_OUTPUT
+
+      - name: Bump version
+        run: moon run :bump-version
+        env:
+          BUMP_STRATEGY: ${{ steps.bump.outputs.strategy }}
+
+      - name: Read new version
+        id: version
         run: |
           VERSION=$(node -p "require('./app/package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "tag=v$VERSION" >> $GITHUB_OUTPUT
 
-      - name: Update CHANGELOG.md
-        id: git-cliff-changelog
+      - name: Generate CHANGELOG.md
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff-changelog.toml
-          args: --bump --unreleased --github-repo ${{ github.repository }} --output CHANGELOG.md
-
-      - name: Determine next version
-        id: next-version
-        run: |
-          VERSION=$(echo "${{ steps.git-cliff-changelog.outputs.content }}" | jq -r .[0].version)
-          echo "version=$VERSION" >> $GITHUB_OUTPUT
-          echo "tag=v$VERSION" >> $GITHUB_OUTPUT
-
-      - name: Bump version
-        env:
-          VERSION_BUMP: ${{ steps.next-version.outputs.version }}
-        run: moon run :bump-version
+          args: --tag ${{ steps.version.outputs.tag }} --output CHANGELOG.md
 
       - name: Update SECURITY.md
         run: |
-          MAJOR_MINOR=$(echo "${{ steps.next-version.outputs.version }}" | cut -d. -f1,2)
+          MAJOR_MINOR=$(echo "${{ steps.version.outputs.version }}" | cut -d. -f1,2)
           sed -i "s/[0-9]\+\.[0-9]\+\./${MAJOR_MINOR}./g" SECURITY.md
 
       - name: Configure git
@@ -72,37 +74,32 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Commit changes
+      - name: Commit release changes
         run: |
-          if git diff --quiet; then
-            echo "❌ No changes to commit"
-            exit 1
-          fi
-
           git add .
-          git commit -m "chore(release): ${{ steps.next-version.outputs.tag }}"
+          git commit -m "chore(release): ${{ steps.version.outputs.tag }}"
 
-      - name: Create tag
-        run: git tag "${{ steps.next-version.outputs.tag }}"
+      - name: Create git tag
+        run: |
+          git tag ${{ steps.version.outputs.tag }}
+
+      - name: Push changes
+        run: |
+          git push origin HEAD
+          git push origin ${{ steps.version.outputs.tag }}
 
       - name: Generate release notes
-        id: git-cliff-release-notes
+        id: release-notes
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff-release-notes.toml
           args: --latest --strip all
 
-      - name: Push commit and tag
-        run: |
-          # Push to main branch (workflow must be run from main or a branch that will be merged to main)
-          git push origin main
-          git push origin --tags
-
       - name: Create GitHub Release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ steps.next-version.outputs.tag }}" \
-            --title "Release ${{ steps.next-version.outputs.tag }}" \
-            --notes "${{ steps.git-cliff-release-notes.outputs.content }}" \
+          gh release create "${{ steps.version.outputs.tag }}" \
+            --title "Release ${{ steps.version.outputs.tag }}" \
+            --notes "${{ steps.release-notes.outputs.content }}" \
             --latest
