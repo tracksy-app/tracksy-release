@@ -2,5 +2,8 @@
   "rows": [
     "C'est mon nouveau fichier.",
     "Je le complète."
+  },
+  "metadata": {
+    "created_at": "now"
   }
 }
