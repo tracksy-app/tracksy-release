@@ -2,12 +2,12 @@
 
 ## Supported Versions
 
-We only support updates to the 2.3.x versions of Tracksy.
+We only support updates to the 2.4.x versions of Tracksy.
 
 | Version | Supported          |
 | ------- | ------------------ |
-| 2.3.0   | :white_check_mark: |
-| < 2.3.0 | :x:                |
+| 2.4.0   | :white_check_mark: |
+| < 2.4.0 | :x:                |
 
 ## Reporting a Vulnerability
 

@@ -2,6 +2,11 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.0](https://github.com/tracksy-app/tracksy-release/compare/v2.3.1..v2.4.0) - 2026-02-05
+
+### ✨  Features
+
+- New file - ([dda4d19](https://github.com/tracksy-app/tracksy-release/commit/dda4d194079c76019c313be88d584ed10da70f41))
 ## [2.3.1](https://github.com/tracksy-app/tracksy-release/compare/v0.3.0..v2.3.1) - 2026-02-05
 
 ### ✨  Features

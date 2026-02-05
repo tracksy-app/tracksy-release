@@ -1,6 +1,6 @@
 [project]
 name = "synthetic_datasets"
-version = "2.3.1"
+version = "2.4.0"
 description = "Tracksy app test datasets"
 readme = "README.md"
 requires-python = ">=3.12,<3.14"
