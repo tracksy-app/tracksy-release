@@ -36,55 +36,28 @@ jobs:
       - name: Install Moon
         uses: moonrepo/setup-toolchain@v0
         with:
-          auto-install: false
+          auto-install: true
+          auto-setup: true
+          cache: true
 
-      - name: Setup toolchains
-        run: moon setup
+      - name: Bump project by strategy
+        if: ${{ github.event.inputs.bump != 'auto' }}
+        run: moon run :bump-version -- ${{ github.event.inputs.bump }}
 
-      - name: Determine bump from commits (auto)
-        id: cliff-bump
+      - name: Determine version (auto)
+        id: cliff-version
         if: ${{ github.event.inputs.bump == 'auto' }}
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff.toml
           args: --bump --unreleased --output /dev/null
 
-      - name: Resolve bump strategy
-        id: bump
-        run: |
-          INPUT="${{ github.event.inputs.bump }}"
+      - name: Bump project by version (auto)
+        if: ${{ github.event.inputs.bump == 'auto' }}
+        run: moon run :set-version -- ${{ steps.cliff-version.outputs.version }}
 
-          if [[ "$INPUT" != "auto" ]]; then
-            echo "strategy=$INPUT" >> $GITHUB_OUTPUT
-            echo "Using manual bump: $INPUT"
-            exit 0
-          fi
-
-          CURRENT=$(node -p "require('./app/package.json').version")
-          NEXT="${{ steps.cliff-bump.outputs.version }}"
-
-          echo "Current version: $CURRENT"
-          echo "Next version:    $NEXT"
-
-          IFS=. read -r c1 c2 c3 <<< "$CURRENT"
-          IFS=. read -r n1 n2 n3 <<< "$NEXT"
-
-          if [[ "$n1" -gt "$c1" ]]; then
-            STRATEGY=major
-          elif [[ "$n2" -gt "$c2" ]]; then
-            STRATEGY=minor
-          else
-            STRATEGY=patch
-          fi
-
-          echo "strategy=$STRATEGY" >> $GITHUB_OUTPUT
-          echo "Detected bump strategy: $STRATEGY"
-
-      - name: Bump version
-        run: moon run :bump-version -- ${{ steps.bump.outputs.strategy }}
-
-      - name: Read new version
-        id: version
+      - name: Resolve new version
+        id: version-resolve
         run: |
           VERSION=$(node -p "require('./app/package.json').version")
           echo "version=$VERSION" >> $GITHUB_OUTPUT
@@ -94,11 +67,11 @@ jobs:
         uses: orhun/git-cliff-action@v4
         with:
           config: .github/cliff.toml
-          args: --tag ${{ steps.version.outputs.tag }} --bump --output CHANGELOG.md
+          args: --tag ${{ steps.version-resolve.outputs.tag }} --bump --output CHANGELOG.md
 
       - name: Update SECURITY.md
         run: |
-          MAJOR_MINOR=$(echo "${{ steps.version.outputs.version }}" | cut -d. -f1,2)
+          MAJOR_MINOR=$(echo "${{ steps.version-resolve.outputs.version }}" | cut -d. -f1,2)
           sed -i "s/[0-9]\+\.[0-9]\+\./${MAJOR_MINOR}./g" SECURITY.md
 
       - name: Configure git
@@ -109,16 +82,16 @@ jobs:
       - name: Commit release changes
         run: |
           git add .
-          git commit -m "chore(release): ${{ steps.version.outputs.tag }}"
+          git commit -m "chore(release): ${{ steps.version-resolve.outputs.tag }}"
 
       - name: Create git tag
         run: |
-          git tag ${{ steps.version.outputs.tag }}
+          git tag ${{ steps.version-resolve.outputs.tag }}
 
       - name: Push changes
         run: |
           git push origin HEAD
-          git push origin ${{ steps.version.outputs.tag }}
+          git push origin ${{ steps.version-resolve.outputs.tag }}
 
       - name: Generate release notes
         id: release-notes
@@ -133,7 +106,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${{ steps.version.outputs.tag }}" \
-            --title "Release ${{ steps.version.outputs.tag }}" \
+          gh release create "${{ steps.version-resolve.outputs.tag }}" \
+            --title "Release ${{ steps.version-resolve.outputs.tag }}" \
             --notes "${{ steps.release-notes.outputs.content }}" \
             --latest
