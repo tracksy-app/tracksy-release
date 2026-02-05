@@ -5,6 +5,7 @@
   },
   "metadata": {
     "created_at": "now",
-    "author": "me"
+    "author": "me",
+    "description": "This file is used to test the new feature."
   }
 }
