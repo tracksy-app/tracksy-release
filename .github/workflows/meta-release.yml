@@ -33,12 +33,13 @@ jobs:
           # The entire history is required to generate the CHANGELOG.md file
           fetch-depth: 0
 
-      - name: Install Moon
+      - name: Install moon
         uses: moonrepo/setup-toolchain@v0
         with:
-          auto-install: true
-          auto-setup: true
-          cache: true
+          auto-install: false
+
+      - name: Setup toolchains
+        run: moon setup
 
       - name: Bump project by strategy
         if: ${{ github.event.inputs.bump != 'auto' }}
