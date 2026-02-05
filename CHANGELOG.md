@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.2](https://github.com/tracksy-app/tracksy-release/compare/v2.4.1..v2.4.2) - 2026-02-05
+
+### ⬆️ Bump
+
+- Add author - ([35d957f](https://github.com/tracksy-app/tracksy-release/commit/35d957f9aa86b1ea028b46dc0ff1c0b20214ace1))
+
+### 📦 Other (unconventional)
+
+- BREAKING CHANGE: translate my file - ([13ee93c](https://github.com/tracksy-app/tracksy-release/commit/13ee93c21138d74fbe44b63db622a00c714a8eb5))
 ## [2.4.1](https://github.com/tracksy-app/tracksy-release/compare/v2.4.0..v2.4.1) - 2026-02-05
 
 ### 🐛 Bug Fixes
