@@ -81,9 +81,7 @@ jobs:
           echo "Detected bump strategy: $STRATEGY"
 
       - name: Bump version
-        run: moon run :bump-version
-        env:
-          BUMP_STRATEGY: ${{ steps.bump.outputs.strategy }}
+        run: moon run :bump-version -- ${{ steps.bump.outputs.strategy }}
 
       - name: Read new version
         id: version

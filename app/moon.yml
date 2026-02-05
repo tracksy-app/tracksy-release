@@ -30,3 +30,6 @@ tasks:
         command: 'pnpm audit --prod'
     typecheck:
         command: 'tsc --noEmit'
+    bump-version:
+        command: 'pnpm version --no-git-tag-version'
+        description: 'Bump package version. Requires bump strategy (major, minor, patch).'
