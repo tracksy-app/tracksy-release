@@ -6,6 +6,7 @@
   "metadata": {
     "created_at": "now",
     "author": "me",
-    "description": "This file is used to test the new feature."
+    "description": "This file is used to test the new feature.",
+    "breaking": "change"
   }
 }
