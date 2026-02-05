@@ -52,6 +52,8 @@ jobs:
         with:
           config: .github/cliff.toml
           args: --bump --unreleased --output /dev/null
+        env:
+          CLIFF_INCLUDE_STATS: false
 
       - name: Bump project by version (auto)
         if: ${{ github.event.inputs.bump == 'auto' }}
@@ -69,6 +71,8 @@ jobs:
         with:
           config: .github/cliff.toml
           args: --tag ${{ steps.version-resolve.outputs.tag }} --bump --output CHANGELOG.md
+        env:
+          CLIFF_INCLUDE_STATS: false
 
       - name: Update SECURITY.md
         run: |

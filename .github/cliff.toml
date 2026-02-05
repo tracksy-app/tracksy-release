@@ -69,7 +69,7 @@ body = """
     {% endfor -%}
 {% endfor -%}
 
-{% if env_var(name="CLIFF_INCLUDE_STATS") -%}
+{% if include_stats -%}
 ## Commit Statistics 📊\n
 - {{ statistics.commit_count }} commit(s) contributed to the release.
 - {{ statistics.commits_timespan | default(value=0) }} day(s) passed between the first and last commit.
