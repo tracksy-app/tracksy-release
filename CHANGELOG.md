@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.4.1](https://github.com/tracksy-app/tracksy-release/compare/v2.4.0..v2.4.1) - 2026-02-05
+
+### 🐛 Bug Fixes
+
+- Typo - ([7faccfc](https://github.com/tracksy-app/tracksy-release/commit/7faccfc57ff3a92381a33f0601368d4d82030c44))
+
+### 📚 Documentation
+
+- Completion - ([e42eb30](https://github.com/tracksy-app/tracksy-release/commit/e42eb30acb81e711dc3a3ea707935dda81535b98))
+
+### 🚜 Refactor
+
+- Migrate to json - ([9e14b00](https://github.com/tracksy-app/tracksy-release/commit/9e14b005ae7ce336a9b67142cacbd7143d1451ec))
+
+### 📦 Other (unconventional)
+
+- Add technical date - ([6ceebd5](https://github.com/tracksy-app/tracksy-release/commit/6ceebd5a7c1890830e6612c9bfe931f0a343f4ed))
 ## [2.4.0](https://github.com/tracksy-app/tracksy-release/compare/v2.3.1..v2.4.0) - 2026-02-05
 
 ### ✨  Features
